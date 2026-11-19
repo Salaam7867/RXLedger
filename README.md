@@ -24,7 +24,7 @@ flowchart TD
     I --> K[Automated Email Audit Report]
 ```
 
-Key Engineering Highlights 
+## Key Engineering Highlights 
 Multi-Agent Verification & Smart Routing: Pairs a primary vision extractor with a secondary vision auditor. A MIME-type router bypasses single-page vision limits on multi-page PDFs by dynamically routing them to a native PDF-capable fallback.
 
 Serverless Reliability Patterns: Uses LockService to prevent overlapping triggers, CacheService (6-hour TTL) to avoid redundant Step-1 API calls on retries, and a 140-second execution safety breaker to exit cleanly before Google Apps Script's 6-minute hard timeout.
@@ -33,7 +33,7 @@ Deterministic Guardrails (src/): Wraps non-deterministic LLM outputs in strict J
 
 Human-In-The-Loop (HITL) Mobile UI: Auto-renamed medicines preserve their originalOcrName in a backup column, surfacing a 24-hour inline Revert action in AppSheet so staff can undo edge-case fuzzy matches in one tap.
 
-Tech Stack 
+## Tech Stack 
 AI & Vision: Gemini API, Groq API (Qwen Vision)
 
 Backend & Automation: Google Apps Script (JavaScript), Google Drive API, Google Sheets
