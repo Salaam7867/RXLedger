@@ -1,4 +1,4 @@
-# KMH ERP — Multi-Agent Pharmacy Invoice OCR & Inventory Automation
+# RXLedger — Multi-Agent Pharmacy Invoice OCR & Inventory Automation
 
 > **Note on Intellectual Property:** This system is actively deployed in production for a retail pharmacy. To protect commercial data and proprietary domain prompts, distributor records, API configurations, and full production prompts are redacted. Core validation and entity-resolution modules are included in `/src` for technical review.
 
