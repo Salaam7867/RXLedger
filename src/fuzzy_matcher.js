@@ -1,5 +1,5 @@
 /**
- * RXLedger — Deterministic Entity Resolution & Fuzzy Matching Module
+ * KMH ERP — Deterministic Entity Resolution & Fuzzy Matching Module
  * Prevents duplicate SKU fragmentation across inconsistent distributor bills
  * using Levenshtein distance, Jaccard token overlap, an MRP kill-switch,
  * and dosage-form conflict blockers.
