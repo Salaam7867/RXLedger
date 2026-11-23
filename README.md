@@ -33,7 +33,20 @@ flowchart TD
     L --> N["Automated Email Audit Report"]
 
 ```
+## Repository Structure
 
+```text
+RXLedger/
+├── README.md
+├── .gitignore
+├── src/
+│   ├── pipeline_skeleton.js
+│   ├── fuzzy_matcher.js
+│   └── output_validator.js
+└── assets/
+    ├── appsheet-mobile-ui.png
+    └── email-audit-log.png
+```
 
 ## Key Engineering Highlights
 
