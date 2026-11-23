@@ -61,11 +61,15 @@ Built JavaScript guardrails around probabilistic AI outputs, including:
 - Dosage-form conflict checks and MRP-constrained fuzzy medicine matching.
 - Support for negative quantities representing distributor returns.
 
+
 ### 4. Context-Aware Duplicate Invoice Detection
 
-Implemented a deliberate three-row sampling strategy to reduce false positives caused by OCR-generated medicine-name hallucinations.
+Implemented a selective three-row sampling strategy to detect potential duplicate invoices while reducing false positives caused by OCR-generated medicine-name hallucinations.
 
-The checks combine invoice number, medicine name, batch, invoice date, and distributor information rather than relying on a simple invoice-number comparison. This balances execution time with practical duplicate detection.
+The detection logic combines invoice number, medicine name, batch, invoice date, and distributor information through multiple matching conditions rather than relying on invoice-number equality alone.
+
+This is a deliberate performance and reliability trade-off designed for noisy, real-world pharmacy invoices.
+
 
 ### 5. Serverless Reliability and Recovery
 
