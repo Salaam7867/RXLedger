@@ -24,14 +24,50 @@ flowchart TD
     I --> K[Automated Email Audit Report]
 ```
 
-## Key Engineering Highlights 
-Multi-Agent Verification & Smart Routing: Pairs a primary vision extractor with a secondary vision auditor. A MIME-type router bypasses single-page vision limits on multi-page PDFs by dynamically routing them to a native PDF-capable fallback.
 
-Serverless Reliability Patterns: Uses LockService to prevent overlapping triggers, CacheService (6-hour TTL) to avoid redundant Step-1 API calls on retries, and a 140-second execution safety breaker to exit cleanly before Google Apps Script's 6-minute hard timeout.
+## Key Engineering Highlights
 
-Deterministic Guardrails (src/): Wraps non-deterministic LLM outputs in strict JavaScript validators—checking row-count parity, locking fractional decimal quantities, enforcing dosage-form conflict blockers, and applying an MRP kill-switch on fuzzy matches.
+### 1. Sequential Multi-Agent Invoice Intelligence
 
-Human-In-The-Loop (HITL) Mobile UI: Auto-renamed medicines preserve their originalOcrName in a backup column, surfacing a 24-hour inline Revert action in AppSheet so staff can undo edge-case fuzzy matches in one tap.
+Designed a two-stage AI verification pipeline:
+
+- **Agent 1 — Extraction:** Gemini processes invoice images and complete multi-page PDFs, extracting distributor details and medicine-level purchase records.
+- **Agent 2 — Verification:** Groq Qwen Vision independently audits image-based extractions, while Gemini 2.5 Flash handles PDF verification and acts as the fallback when image verification fails.
+
+The pipeline uses file-type-aware routing to select the appropriate verification path.
+
+### 2. Multi-Page PDF Processing
+
+Processes original PDF documents rather than relying on first-page thumbnails. Both the extraction and Gemini PDF verification stages receive the original document, allowing the verifier to inspect information across multiple pages.
+
+### 3. Deterministic Validation and Data Integrity
+
+Built JavaScript guardrails around probabilistic AI outputs, including:
+
+- Invoice-count and line-item-count consistency checks.
+- Medicine-name locking to preserve the original extraction when the verifier attempts incorrect rewrites.
+- Decimal quantity and free-quantity preservation.
+- Numeric, packing, MRP, and rate validation.
+- Dosage-form conflict checks and MRP-constrained fuzzy medicine matching.
+- Support for negative quantities representing distributor returns.
+
+### 4. Context-Aware Duplicate Invoice Detection
+
+Implemented a deliberate three-row sampling strategy to reduce false positives caused by OCR-generated medicine-name hallucinations.
+
+The checks combine invoice number, medicine name, batch, invoice date, and distributor information rather than relying on a simple invoice-number comparison. This balances execution time with practical duplicate detection.
+
+### 5. Serverless Reliability and Recovery
+
+- LockService prevents overlapping invoice-processing executions.
+- CacheService retains successful extraction results for six hours, avoiding unnecessary repeat extraction during retries.
+- Retry handling and failure-strike tracking manage temporary API failures.
+- A processing safety breaker leaves an execution-time buffer before the Apps Script limit.
+- Failed invoices remain available for retry and are quarantined after repeated failures.
+
+### 6. Human-in-the-Loop Inventory Correction
+
+Integrated a one-tap, 24-hour medicine-name revert action into the AppSheet interface. Original OCR names are preserved so pharmacy staff can reverse incorrect automated medicine-name corrections without manually reconstructing the original entry.
 
 ## Tech Stack 
 AI & Vision: Gemini API, Groq API (Qwen Vision)
