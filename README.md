@@ -5,7 +5,7 @@
 ## Business Impact (Live Production)
 * **Inventory Loss Prevention:** Detected 25 near-expiry inventory items within 30 days, representing ₹7,924 in MRP value and ₹5,618 in purchase cost, enabling proactive expiry-risk management and distributor-return decisions.
 * **Operational Efficiency:** Cut daily manual invoice auditing time by **25% (~15 hours/month saved)**.
-* **Cash-Flow Control:** Real-time mobile stock lookups on the shop floor eliminated duplicate distributor orders.
+* **Cash-Flow Control:** Real-time mobile stock and purchase-history lookups help pharmacy staff check existing inventory before placing distributor orders, reducing the risk of duplicate purchases.
 
 ## System Architecture
 
