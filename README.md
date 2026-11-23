@@ -3,7 +3,7 @@
 > **Note on Intellectual Property:** This system is actively deployed in production for a retail pharmacy. To protect commercial data and proprietary domain prompts, distributor records, API configurations, and full production prompts are redacted. Core validation and entity-resolution modules are included in `/src` for technical review.
 
 ## Business Impact (Live Production)
-* **Loss Prevention:** Automatically tracks batch expiry dates; flagged **25 near-expiry inbound items (≤6 months shelf life)** in 30 days, preventing **₹7,924 in MRP losses** (₹5,618 purchase cost).
+* **Inventory Loss Prevention:** Detected 25 near-expiry inventory items within 30 days, representing ₹7,924 in MRP value and ₹5,618 in purchase cost, enabling proactive expiry-risk management and distributor-return decisions.
 * **Operational Efficiency:** Cut daily manual invoice auditing time by **25% (~15 hours/month saved)**.
 * **Cash-Flow Control:** Real-time mobile stock lookups on the shop floor eliminated duplicate distributor orders.
 
