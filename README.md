@@ -10,18 +10,28 @@
 ## System Architecture
 
 ```mermaid
+
 flowchart TD
-    A[Mobile AppSheet Upload] --> B[Google Drive Inbox]
-    B --> C[Apps Script Trigger + LockService]
-    C --> D[Step 1: Gemini Vision OCR + CacheService]
-    D --> E{MIME-Type Router}
-    E -->|Image| F[Step 2: Groq Qwen Vision Auditor]
-    E -->|PDF / Fallback| G[Step 2B: Gemini 2.5 Flash Auditor]
-    F --> H[Deterministic JS Guardrails]
+    A["Mobile AppSheet Upload"] --> B["Google Drive Inbox"]
+    B --> C["Apps Script Orchestrator + LockService"]
+    C --> D["Step 1: Gemini Vision OCR + CacheService"]
+    D --> E{"MIME-Type Router"}
+
+    E -->|"Image"| F["Step 2: Groq Qwen Vision Auditor"]
+    E -->|"PDF"| G["Step 2B: Gemini 2.5 Flash Auditor"]
+
+    F -->|"Verification Failure"| G
+    F --> H["Deterministic JavaScript Guardrails"]
     G --> H
-    H -->|Levenshtein + MRP Kill-Switch + 3-Item Deduplication| I[Google Sheets Ledger]
-    I --> J[AppSheet Mobile UI + 1-Click HITL Revert]
-    I --> K[Automated Email Audit Report]
+
+    H --> I["Medicine Entity Resolution"]
+    I --> J["Levenshtein Fuzzy Matching + MRP Kill-Switch"]
+    J --> K["Context-Aware 3-Row Duplicate Detection"]
+    K --> L["Google Sheets Ledger"]
+
+    L --> M["AppSheet Mobile UI + 1-Tap HITL Revert"]
+    L --> N["Automated Email Audit Report"]
+
 ```
 
 
