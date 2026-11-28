@@ -3,7 +3,7 @@
 > **Note on Intellectual Property:** This system is actively deployed in production for a retail pharmacy. To protect commercial data and proprietary domain prompts, distributor records, API configurations, and full production prompts are redacted. Core validation and entity-resolution modules are included in `/src` for technical review.
 
 ## Live Production Walkthrough (6:07)
-[![RXLedger: Serverless AI Pharmacy POS, Invoice OCR & Expiry Tracking](https://img.youtube.com/vi/bXlqRgH4Zsw/maxresdefault.jpg)](https://youtu.be/bXlqRgH4Zsw)
+[![RXLedger: Serverless AI Pharmacy POS, Invoice OCR & Expiry Tracking]([https://youtu.be/bXlqRgH4Zsw](https://youtu.be/bXlqRgH4Zsw?si=GS5IKawwoPa6qcCp))
 
 ## Business Impact (Live Production)
 * **Inventory Loss Prevention:** Detected 25 near-expiry inventory items within 30 days, representing ₹7,924 in MRP value and ₹5,618 in purchase cost, enabling proactive expiry-risk management and distributor-return decisions.
